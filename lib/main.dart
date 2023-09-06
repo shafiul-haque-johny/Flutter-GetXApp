@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:getx_app/content_page.dart';
 import 'package:getx_app/detail_page.dart';
 import 'package:getx_app/home_page.dart';
@@ -12,15 +13,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'GetX App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         useMaterial3: true,
       ),
-      //home: Container(color: Colors.teal,),
-      home: HomePage(),
+      initialRoute: '/',
+      getPages: [
+        GetPage(
+          name: '/',
+          page: () => ContentPage(),
+        ),
+        GetPage(
+          name: '/detail',
+          page: () => DetailPage(),
+        ),
+      ],
     );
   }
 }

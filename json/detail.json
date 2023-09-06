@@ -1,17 +1,17 @@
 [
   {
-    "name": "Dastagir",
+    "name": "Elon Musk",
     "title": "Delivery App",
     "text":"We need delivery app but with a fun look. Our target is the user and the courier can use it easily",
-    "image": "image/images1.jpeg",
+    "image": "images/images1.jpg",
     "time": "21 July",
     "prize": "200"
   },
   {
-    "name": "John Smith",
+    "name": "Tom Cruise",
     "title": "E-commerce App",
     "text":"We will build an e-commerce site that delivery goods to all over the places.",
-    "image": "image/images2.jpeg",
+    "image": "images/images2.jpg",
     "time": "12 August",
     "prize": "300"
 
@@ -20,7 +20,7 @@
     "name": "Yusof MD",
     "title": "Logo App",
     "text":"We need Logo app for our clients with big budget. Our target is the user and the courier can use it.",
-    "image": "image/images3.jpeg",
+    "image": "images/images3.jpeg",
     "time": "01 Sept",
     "prize": "240"
 
@@ -29,7 +29,7 @@
     "name": "Mosas",
     "title": "Yahoo App",
     "text":"We need Yahoo App but with a fun look. Our target is the user and the courier can use it.",
-    "image": "image/images4.jpeg",
+    "image": "images/images4.jpeg",
     "time": "20 Jan",
     "prize": "399"
   }

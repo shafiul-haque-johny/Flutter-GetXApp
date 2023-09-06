@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ContentPage extends StatefulWidget {
   const ContentPage({Key? key}) : super(key: key);
@@ -8,6 +11,29 @@ class ContentPage extends StatefulWidget {
 }
 
 class _ContentPageState extends State<ContentPage> {
+  List list = [];
+  List info = [];
+
+  readData() async {
+    await DefaultAssetBundle.of(context).loadString('json/recent.json').then(
+          (value) => setState(() {
+            list = json.decode(value);
+          }),
+        );
+
+    await DefaultAssetBundle.of(context).loadString('json/detail.json').then(
+          (value) => setState(() {
+            info = json.decode(value);
+          }),
+        );
+  }
+
+  @override
+  void initState() {
+    readData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -17,7 +43,7 @@ class _ContentPageState extends State<ContentPage> {
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.only(
-          top: 70,
+          top: 20,
         ),
         color: const Color(0xFFc5e5f3),
         child: Column(
@@ -55,7 +81,7 @@ class _ContentPageState extends State<ContentPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Elon Musk',
+                          ' Elon Musk',
                           style: TextStyle(
                             color: Color(0xff913fe3),
                             fontSize: 12,
@@ -88,7 +114,7 @@ class _ContentPageState extends State<ContentPage> {
                 ),
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 25),
             // popular contest
             Container(
               padding: const EdgeInsets.only(
@@ -126,7 +152,12 @@ class _ContentPageState extends State<ContentPage> {
                       ),
                       color: const Color(0xff913fe3),
                     ),
-                    child: const InkWell(),
+                    child: InkWell(
+                      child: Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -134,14 +165,25 @@ class _ContentPageState extends State<ContentPage> {
             const SizedBox(height: 20),
             // list
             Container(
-              height: 220,
+              height: 235,
               child: PageView.builder(
                 controller: PageController(
                   viewportFraction: 0.88,
                 ),
-                itemCount: 4,
+                itemCount: info.length,
                 itemBuilder: (_, i) {
                   return InkWell(
+                    onTap: () => Get.toNamed(
+                      '/detail/',
+                      arguments: {
+                        'title': info[i]['title'].toString(),
+                        'text': info[i]['text'].toString(),
+                        'name': info[i]['name'].toString(),
+                        'image': info[i]['image'].toString(),
+                        'time': info[i]['time'].toString(),
+                        'prize': info[i]['prize'].toString(),
+                      },
+                    ),
                     child: Container(
                       padding: const EdgeInsets.only(
                         left: 20,
@@ -165,9 +207,9 @@ class _ContentPageState extends State<ContentPage> {
                           Container(
                             child: Row(
                               children: [
-                                const Text(
-                                  'Title',
-                                  style: TextStyle(
+                                Text(
+                                  info[i]['title'],
+                                  style: const TextStyle(
                                     fontSize: 30,
                                     fontWeight: FontWeight.w500,
                                     color: Colors.white,
@@ -182,9 +224,9 @@ class _ContentPageState extends State<ContentPage> {
                           const SizedBox(height: 10),
                           Container(
                             width: width,
-                            child: const Text(
-                              "Text",
-                              style: TextStyle(
+                            child: Text(
+                              info[i]['text'],
+                              style: const TextStyle(
                                   fontSize: 20, color: Color(0xFFb8eefc)),
                             ),
                           ),
@@ -199,9 +241,9 @@ class _ContentPageState extends State<ContentPage> {
                                   child: Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(25),
-                                      image: const DecorationImage(
+                                      image: DecorationImage(
                                         image: AssetImage(
-                                          'images/background.jpg',
+                                          info[i]['image'],
                                         ),
                                         fit: BoxFit.cover,
                                       ),
@@ -218,7 +260,7 @@ class _ContentPageState extends State<ContentPage> {
               ),
             ),
             const SizedBox(
-              height: 30,
+              height: 25,
             ),
             //recent contests
             Container(
@@ -253,13 +295,19 @@ class _ContentPageState extends State<ContentPage> {
                       borderRadius: BorderRadius.circular(10),
                       color: const Color(0xff913fe3),
                     ),
-                    child: GestureDetector(),
+                    child: InkWell(
+                      //onTap: ()=> Get.to(()=> RecentContest(),),
+                      child: const Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ],
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 15,
             ),
             Expanded(
               child: MediaQuery.removePadding(
@@ -268,11 +316,11 @@ class _ContentPageState extends State<ContentPage> {
                 child: ListView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
-                  itemCount: 4,
+                  itemCount: list.length,
                   itemBuilder: (_, i) {
                     return Container(
                       width: width,
-                      height: 100,
+                      height: 95,
                       margin: const EdgeInsets.only(
                           left: 25, right: 25, bottom: 20),
                       decoration: BoxDecoration(
@@ -283,37 +331,40 @@ class _ContentPageState extends State<ContentPage> {
                         padding: const EdgeInsets.only(left: 20, right: 20),
                         child: Row(
                           children: [
-                            const CircleAvatar(
+                            CircleAvatar(
                               radius: 40,
-                              backgroundImage: AssetImage("img/background.jpg"),
+                              backgroundImage: AssetImage(
+                                list[i]['image'],
+                              ),
                             ),
                             const SizedBox(
                               width: 10,
                             ),
-                            const Column(
+                            Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Status",
-                                  style: TextStyle(
+                                  list[i]['status'],
+                                  style: const TextStyle(
                                       color: Color(0xff913fe3),
-                                      fontSize: 12,
+                                      fontSize: 18,
                                       decoration: TextDecoration.none),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 5,
                                 ),
                                 SizedBox(
                                   width: 170,
                                   child: Text(
-                                    "Text",
-                                    style: TextStyle(
-                                        color: Color(0xFF3b3f42),
-                                        fontSize: 18,
-                                        decoration: TextDecoration.none),
+                                    list[i]['text'],
+                                    style: const TextStyle(
+                                      color: Color(0xFF3b3f42),
+                                      fontSize: 15,
+                                      decoration: TextDecoration.none,
+                                    ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                             Expanded(
@@ -322,12 +373,12 @@ class _ContentPageState extends State<ContentPage> {
                             Container(
                               width: 70,
                               height: 70,
-                              child: const Text(
-                                "Time",
-                                style: TextStyle(
+                              child: Text(
+                                list[i]['time'],
+                                style: const TextStyle(
                                   fontSize: 10,
                                   decoration: TextDecoration.none,
-                                  color: Color(0xFFb2b8bb),
+                                  color: Color(0xffb2b8bb),
                                 ),
                               ),
                             ),
