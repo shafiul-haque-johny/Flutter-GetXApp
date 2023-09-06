@@ -46,9 +46,12 @@ class _DetailPageState extends State<DetailPage> {
               top: 70,
               left: 10,
               child: IconButton(
-                onPressed: () => Get.back(),
+                onPressed: () => Get.to(
+                  () => ContentPage(),
+                ),
                 icon: const Icon(
-                  Icons.arrow_back_ios,
+                  Icons.home_outlined,
+                  color: Colors.white,
                 ),
               ),
             ),

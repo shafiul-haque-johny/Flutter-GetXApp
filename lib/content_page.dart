@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'recent_contest.dart';
+
 class ContentPage extends StatefulWidget {
   const ContentPage({Key? key}) : super(key: key);
 
@@ -165,7 +167,7 @@ class _ContentPageState extends State<ContentPage> {
             const SizedBox(height: 20),
             // list
             Container(
-              height: 235,
+              height: 240,
               child: PageView.builder(
                 controller: PageController(
                   viewportFraction: 0.88,
@@ -296,7 +298,9 @@ class _ContentPageState extends State<ContentPage> {
                       color: const Color(0xff913fe3),
                     ),
                     child: InkWell(
-                      //onTap: ()=> Get.to(()=> RecentContest(),),
+                      onTap: () => Get.to(
+                        () => RecentContest(),
+                      ),
                       child: const Icon(
                         Icons.arrow_forward_ios,
                         color: Colors.white,
