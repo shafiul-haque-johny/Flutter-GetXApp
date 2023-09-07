@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_app/content_page.dart';
 import 'package:getx_app/detail_page.dart';
 import 'package:getx_app/home_page.dart';
 
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(
           name: '/',
-          page: () => ContentPage(),
+          page: () => HomePage(),
         ),
         GetPage(
           name: '/detail',

@@ -37,6 +37,7 @@ class _RecentContestState extends State<RecentContest> {
           onPressed: () => Get.back(),
           icon: const Icon(
             Icons.arrow_back_ios,
+            color: Colors.white,
           ),
         ),
         title: const Text(
