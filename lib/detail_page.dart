@@ -296,7 +296,7 @@ class _DetailPageState extends State<DetailPage> {
                                   Text(
                                     "Top Level",
                                     style: TextStyle(
-                                        fontSize: 18,
+                                        fontSize: 16,
                                         color: Color(0xFF303030),
                                         fontWeight: FontWeight.w700),
                                   ),
@@ -319,7 +319,7 @@ class _DetailPageState extends State<DetailPage> {
               ),
             ),
             Positioned(
-              top: 545,
+              top: 560,
               left: 25,
               height: 50,
               child: Container(
@@ -347,7 +347,7 @@ class _DetailPageState extends State<DetailPage> {
               children: [
                 for (int i = 0; i < images.length; i++)
                   Positioned(
-                    top: 580,
+                    top: 600,
                     left: (20 + i * 35).toDouble(),
                     width: 50,
                     height: 50,
@@ -367,7 +367,7 @@ class _DetailPageState extends State<DetailPage> {
             ),
             //favourite
             Positioned(
-              top: 640,
+              top: 670,
               left: 25,
               child: Row(
                 children: [

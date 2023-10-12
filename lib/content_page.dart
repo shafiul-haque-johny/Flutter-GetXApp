@@ -45,7 +45,7 @@ class _ContentPageState extends State<ContentPage> {
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.only(
-          top: 20,
+          top: 50,
         ),
         color: const Color(0xFFc5e5f3),
         child: Column(
@@ -154,7 +154,7 @@ class _ContentPageState extends State<ContentPage> {
                       ),
                       color: const Color(0xff913fe3),
                     ),
-                    child: InkWell(
+                    child: const InkWell(
                       child: Icon(
                         Icons.arrow_forward_ios,
                         color: Colors.white,
@@ -371,11 +371,9 @@ class _ContentPageState extends State<ContentPage> {
                                 ),
                               ],
                             ),
-                            Expanded(
-                              child: Container(),
-                            ),
+                            //Expanded(child: Container(),),
                             Container(
-                              width: 70,
+                              width: 40,
                               height: 70,
                               child: Text(
                                 list[i]['time'],
